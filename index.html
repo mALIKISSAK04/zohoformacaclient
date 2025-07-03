@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add ACA Client Form</title>
+    <style>
+        html, body {
+            margin: 0;
+        }
+        .formsubmit.zcwf_button {
+            color: white !important;
+            background: transparent linear-gradient(0deg, #0279FF 0%, #00A3F3 100%);
+        }
+        #crmWebToEntityForm.zcwf_lblLeft {
+            width: 100%;
+            padding: 25px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        #crmWebToEntityForm.zcwf_lblLeft * {
+            box-sizing: border-box;
+        }
+        #crmWebToEntityForm { text-align: left; direction: ltr; }
+        .zcwf_lblLeft .zcwf_title {
+            word-wrap: break-word;
+            padding: 0 6px 10px;
+            font-weight: bold;
+        }
+        .zcwf_lblLeft.cpT_primaryBtn:hover {
+            background: linear-gradient(#02acff 0, #006be4 100%) no-repeat padding-box !important;
+            box-shadow: 0 -2px 0 0 #0159b9 inset !important;
+            border: 0 !important;
+            color: #fff !important;
+            outline: 0 !important;
+        }
+        .zcwf_lblLeft .zcwf_col_fld input[type=text],
+        .zcwf_lblLeft .zcwf_col_fld textarea {
+            width: 60%;
+            border: 1px solid #c0c6cc !important;
+            resize: vertical;
+            border-radius: 2px;
+            float: left;
+        }
+        .zcwf_lblLeft .zcwf_col_lab {
+            width: 30%;
+            word-break: break-word;
+            padding: 0 6px;
+            margin-right: 10px;
+            margin-top: 5px;
+            float: left;
+            min-height: 1px;
+        }
+        .zcwf_lblLeft .zcwf_col_fld {
+            float: left;
+            width: 68%;
+            padding: 0 6px;
+            position: relative;
+            margin-top: 5px;
+        }
+        .zcwf_lblLeft .zcwf_privacy { padding: 6px; }
+        .zcwf_lblLeft .wfrm_fld_dpNn { display: none; }
+        .dIB { display: inline-block; }
+        .zcwf_lblLeft .zcwf_col_fld_slt {
+            width: 60%;
+            border: 1px solid #ccc;
+            background: #fff;
+            border-radius: 4px;
+            font-size: 12px;
+            float: left;
+            resize: vertical;
+            padding: 2px 5px;
+        }
+        .zcwf_lblLeft .zcwf_row:after,
+        .zcwf_lblLeft .zcwf_col_fld:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .zcwf_lblLeft .zcwf_col_help {
+            float: left;
+            margin-left: 7px;
+            font-size: 12px;
+            max-width: 35%;
+            word-break: break-word;
+        }
+        .zcwf_lblLeft .zcwf_help_icon {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            background: #fff;
+            border: 1px solid #c0c6cc;
+            color: #c1c1c1;
+            text-align: center;
+            font-size: 11px;
+            line-height: 16px;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+        .zcwf_lblLeft .zcwf_row { margin: 15px 0; }
+        .zcwf_lblLeft .formsubmit {
+            margin-right: 5px;
+            cursor: pointer;
+            color: #313949;
+            font-size: 12px;
+        }
+        .zcwf_lblLeft .zcwf_privacy_txt {
+            width: 90%;
+            color: #313949;
+            font-size: 12px;
+            font-family: Georgia;
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 2px;
+            margin-left: 6px;
+        }
+        .zcwf_lblLeft .zcwf_button {
+            font-size: 12px;
+            color: #313949;
+            border: 1px solid #c0c6cc;
+            padding: 3px 9px;
+            border-radius: 4px;
+            cursor: pointer;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .zcwf_lblLeft .zcwf_tooltip_over { position: relative; }
+        .zcwf_lblLeft .zcwf_tooltip_ctn {
+            position: absolute;
+            background: #dedede;
+            padding: 3px 6px;
+            top: 3px;
+            border-radius: 4px;
+            word-break: break-word;
+            min-width: 100px;
+            max-width: 150px;
+            color: #313949;
+            z-index: 100;
+        }
+        .zcwf_lblLeft .zcwf_ckbox { float: left; }
+        .zcwf_lblLeft .zcwf_file {
+            width: 55%;
+            box-sizing: border-box;
+            float: left;
+        }
+        .cBoth:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        @media all and (max-width: 600px) {
+            .zcwf_lblLeft .zcwf_col_lab,
+            .zcwf_lblLeft .zcwf_col_fld {
+                width: auto;
+                float: none !important;
+            }
+            .zcwf_lblLeft .zcwf_col_help { width: 40%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="crmWebToEntityForm" class="zcwf_lblLeft crmWebToEntityForm" style="background-color: #DDE7EB; color: black; max-width: 600px;">
+        <div class="zcwf_title" style="max-width: 600px; color: black; font-family: Georgia;">
+            Add ACA Client
+        </div>
+        <form id="webform6835174000000671047" action="https://crm.zoho.com/crm/WebForm" name="WebForm6835174000000671047" method="POST" onsubmit="javascript:document.charset='UTF-8'; return checkMandatory6835174000000671047();" accept-charset="UTF-8">
+            <input type="hidden" name="xnQsjsdp" value="6068758ac66806cd8e52d4978803c4d79851c75cf4497746bd6afad2bcc420ff">
+            <input type="hidden" name="zc_gad" id="zc_gad" value="">
+            <input type="hidden" name="xmIwtLD" value="8b099bc5874ce6bfce2bbccb1ec195314ec31f30ec8d92727435d9bf086337760cb09ff5f517254ce9666b8e33bf6b8b">
+            <input type="hidden" name="actionType" value="Q3VzdG9tTW9kdWxlMQ==">
+            <input type="hidden" name="returnURL" value="null">
+            <!-- Form Fields Start -->
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="NAME">ACA Clients Name <span style="color:red;">*</span></label></div>
+                <div class="zcwf_col_fld"><input type="text" id="NAME" name="NAME" aria-required="true" maxlength="120"></input><div class="zcwf_col_help"></div></div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="COBJ1CF2">Phone Number <span style="color:red;">*</span></label></div>
+                <div class="zcwf_col_fld"><input type="text" id="COBJ1CF2" name="COBJ1CF2" aria-required="true" maxlength="30"></input><div class="zcwf_col_help"></div></div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="Email">Email</label></div>
+                <div class="zcwf_col_fld"><input type="email" autocomplete="off" id="Email" name="Email" maxlength="100"></input><div class="zcwf_col_help"></div></div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="COBJ1CF3">Address <span style="color:red;">*</span></label></div>
+                <div class="zcwf_col_fld"><input type="text" id="COBJ1CF3" name="COBJ1CF3" aria-required="true" maxlength="255"></input><div class="zcwf_col_help"></div></div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="COBJ1CF5">Insurance Carriers <span style="color:red;">*</span></label></div>
+                <div class="zcwf_col_fld">
+                    <select id="COBJ1CF5" name="COBJ1CF5" aria-required="true" role="combobox" onChange="addAriaSelected6835174000000671047()">
+                        <option value="-None-">-None-</option>
+                        <option value="Kaiser">Kaiser</option>
+                        <option value="Ambetter">Ambetter</option>
+                        <option value="Oscar">Oscar</option>
+                    </select>
+                    <div class="zcwf_col_help"></div>
+                </div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="COBJ1CF6">Status <span style="color:red;">*</span></label></div>
+                <div class="zcwf_col_fld">
+                    <select id="COBJ1CF6" name="COBJ1CF6" aria-required="true" role="combobox" onChange="addAriaSelected6835174000000671047()">
+                        <option value="-None-">-None-</option>
+                        <option value="Active">Active</option>
+                        <option value="InActive">InActive</option>
+                        <option value="Contact Client">Contact Client</option>
+                    </select>
+                    <div class="zcwf_col_help"></div>
+                </div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="COBJ1CF66">Subsidy Amount</label></div>
+                <div class="zcwf_col_fld"><input type="text" id="COBJ1CF66" name="COBJ1CF66" maxlength="16"></input><div class="zcwf_col_help"></div></div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="COBJ1CF67">Net Premium Amount <span style="color:red;">*</span></label></div>
+                <div class="zcwf_col_fld"><input type="text" id="COBJ1CF67" name="COBJ1CF67" aria-required="true" maxlength="16"></input><div class="zcwf_col_help"></div></div>
+            </div>
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab" style="font-size:12px; font-family: Georgia;"><label for="COBJ1CF1">Note</label></div>
+                <div class="zcwf_col_fld">
+                    <textarea id="COBJ1CF1" name="COBJ1CF1" aria-multiline="true"></textarea>
+                    <div class="zcwf_col_help">
+                        <span title="To add family members and upload files, first press 'Submit,' then search for the Family" class="zcwf_help_icon" onclick="tooltipShow6835174000000671047(this)">?</span>
+                        <div class="zcwf_tooltip_over" style="display:none;"><span class="zcwf_tooltip_ctn">To add family members and upload files, first press 'Submit,' then search for the Family</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Form Fields End -->
+            <div class="zcwf_row">
+                <div class="zcwf_col_lab"></div>
+                <div class="zcwf_col_fld">
+                    <input type="submit" id="formsubmit" class="formsubmit zcwf_button" value="Submit" title="Submit">
+                    <input type="reset" class="zcwf_button" value="Reset" title="Reset">
+                </div>
+            </div>
+        </form>
+        <!-- Zoho Analytics Tracking -->
+        <script id="wf_anal" src="https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=786baaa510a630100986d9bebb870c06de092a34345a34c028aa624a2619926899dc10e0c14cb65b5f62888a30879ef6gid837a5b4381a46e5db339272d81982ca2df579f6923ab07728f725ca2e8876278gidc56cc3bcd51b3221c98700be96eb677f4f368505c8f5f306e9a053c86010828cgid1aec1b1ef84669cfa25fa2ef0c13078eff7cf582e8105099ae4df2ffc7960de3&tw=a0044c3bc62c8e849859f9778e699c0ffea7f2e30a5fa5a404eaed7e0719db7b"></script>
+    </div>
+    <script>
+        function addAriaSelected6835174000000671047() {
+            var optionElem = event.target;
+            var prev = optionElem.querySelector('[aria-selected=true]');
+            if (prev) prev.removeAttribute('aria-selected');
+            optionElem.querySelectorAll('option')[optionElem.selectedIndex].ariaSelected = 'true';
+        }
+        function validateEmail6835174000000671047() {
+            var form = document.forms['WebForm6835174000000671047'];
+            var emailFld = form.querySelectorAll('[ftype=email]');
+            for (var i = 0; i < emailFld.length; i++) {
+                var val = emailFld[i].value.trim();
+                if (val.length && (val.indexOf('@') < 1 || val.lastIndexOf('.') < val.indexOf('@') + 2 || val.lastIndexOf('.') + 2 >= val.length)) {
+                    alert('Please enter a valid email address.');
+                    return false;
+                }
+            }
+            return true;
+        }
+        function checkMandatory6835174000000671047() {
+            var mnd = ['NAME','COBJ1CF67','COBJ1CF2','COBJ1CF3','COBJ1CF6','COBJ1CF5'];
+            var langVal = ['ACA Clients Name','Net Premium Amount','Phone Number','Address','Status','Insurance Carriers'];
+            for (var i = 0; i < mnd.length; i++) {
+                var f = document.forms['WebForm6835174000000671047'][mnd[i]];
+                if (f && f.value.trim().length === 0) {
+                    alert(langVal[i] + ' cannot be empty.'); f.focus(); return false;
+                }
+                if (f && f.nodeName === 'SELECT' && f.options[f.selectedIndex].value === '-None-') {
+                    alert(langVal[i] + ' cannot be none.'); f.focus(); return false;
+                }
+            }
+            if (!validateEmail6835174000000671047()) return false;
+            document.querySelector('.crmWebToEntityForm .formsubmit').disabled = true;
+        }
+        function tooltipShow6835174000000671047(el) {
+            var tip = el.nextElementSibling;
+            var disp = tip.style.display;
+            var all = document.getElementsByClassName('zcwf_tooltip_over');
+            for (var i = 0; i < all.length; i++) all[i].style.display = 'none';
+            tip.style.display = disp === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
