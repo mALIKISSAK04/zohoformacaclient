@@ -3,265 +3,137 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Try Our New Client Portal | Care &amp; Tax Services</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Try Our New Client Portal — Compact Card</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root{
-      --bg-1:#e9fbf7;
-      --bg-2:#d5f4ef;
+    /* Scoped design tokens (no globals) */
+    #ctp-root{
       --ink:#0e3b36;
       --muted:#2f6b64;
       --teal-1:#2bb7a8;
       --teal-2:#1aa596;
-      --cta:#0d8f82;
-      --cta-hover:#0a7c71;
       --card:#ffffff;
       --ring:#86eadf;
-      --shadow: 0 10px 24px rgba(0,0,0,.10);
+      --shadow:0 6px 18px rgba(0,0,0,.08);
       --radius:16px;
-      --radius-lg:20px;
-      --maxw:960px;
-      --pad-x:clamp(16px,4vw,32px);
+      --pad-x:clamp(12px,3vw,20px);
+      --w-max:760px;
+      color:var(--ink);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
 
 ```
-/* Base reset & typography */
-*{box-sizing:border-box}
-html,body{height:100%;margin:0}
-html{overflow-x:hidden}
-body{
-  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--ink);
-  line-height:1.5;
-  background:
-    /* subtle geometric pattern layer */
-    radial-gradient(1000px 800px at -10% -10%, #ffffff 0%, rgba(255,255,255,0) 70%),
-    radial-gradient(900px 700px at 110% -20%, #ffffff 0%, rgba(255,255,255,0) 70%),
-    linear-gradient(180deg, var(--bg-1), var(--bg-2));
-  /* grid overlay */
-  background-attachment: fixed;
-}
-.pattern{
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    repeating-linear-gradient(90deg, rgba(16,120,111,.06) 0 1px, transparent 1px 24px),
-    repeating-linear-gradient(0deg, rgba(16,120,111,.05) 0 1px, transparent 1px 24px);
-  mask: linear-gradient(#000,transparent 90%);
-  z-index: -1;
-}
-
-a{color:inherit}
-img,svg{max-width:100%;height:auto;display:inline-block}
-
-/* Focus visibility */
-:where(a,button,.btn,[tabindex]):focus-visible{
-  outline:3px solid var(--ring);
-  outline-offset:2px;
-  border-radius:12px;
-}
-
-/* Layout wrappers */
-.wrap{
-  max-width:var(--maxw);
-  margin-inline:auto;
+/* Outer wrapper (centered, compact) */
+#ctp-root{
+  max-width:var(--w-max);
+  margin:16px auto;
   padding-inline:var(--pad-x);
 }
-header{
+
+/* Single compact card */
+#ctp-card{
   position:relative;
-  padding: max(16px, env(safe-area-inset-top)) var(--pad-x);
-  background: linear-gradient(90deg,rgba(43,183,168,.08),rgba(26,165,150,.08));
-  border-bottom:1px solid rgba(14,59,54,.06);
-}
-.brand{
-  font-weight:700;
-  letter-spacing:.3px;
-  font-size:clamp(16px,2.6vw,20px);
-  color:var(--ink);
-  display:inline-block;
-}
-
-main{
-  min-height:100svh; /* safe viewport for iOS */
-  display:flex;
-  flex-direction:column;
-  gap:28px;
-  padding-top:12px;
-  padding-bottom:40px;
-}
-
-/* Cards & sections */
-.card{
-  background:var(--card);
-  border:1px solid rgba(14,59,54,.08);
+  background:
+    /* grid-paper pattern */
+    repeating-linear-gradient(0deg, rgba(15,112,103,.06) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(90deg, rgba(15,112,103,.05) 0 1px, transparent 1px 22px),
+    linear-gradient(180deg,#f5fffd,#e9fbf7);
+  border:1px solid rgba(14,59,54,.12);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-}
-@media (min-width:900px){
-  .card{border-radius:var(--radius-lg)}
+  padding:clamp(14px,3.4vw,18px);
 }
 
-.hero{
-  padding:clamp(20px,4.5vw,36px);
-  display:grid;
-  gap:18px;
-  align-items:start;
-}
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
+/* Content spacing (denser than a hero) */
+#ctp-card .stack{display:grid;gap:clamp(8px,2.4vw,12px)}
+
+/* Tiny label pill */
+#ctp-card .pill{
+  display:inline-flex; align-items:center; gap:8px;
   font-weight:600;
-  font-size:clamp(12px,2.4vw,13px);
-  color:var(--muted);
-  background:linear-gradient(90deg, rgba(43,183,168,.16), rgba(26,165,150,.10));
-  border:1px solid rgba(26,165,150,.25);
+  font-size:clamp(0.75rem,1.8vw,0.875rem);
+  color:#0f4c45;
+  background:linear-gradient(90deg, rgba(43,183,168,.18), rgba(26,165,150,.12));
+  border:1px solid rgba(26,165,150,.28);
+  padding:4px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+#ctp-card .pill svg{flex:0 0 14px}
+
+/* Title & subtitle */
+#ctp-card h1{
+  margin:0;
+  font-weight:800;
+  letter-spacing:-.015em;
+  line-height:1.2;
+  font-size:clamp(1.25rem,3.2vw,1.6rem);
+}
+#ctp-card .sub{
+  margin:0;
+  color:#174c46;
+  font-size:clamp(0.9rem,2.2vw,1rem);
+}
+
+/* Feature pills row */
+#ctp-card .features{
+  display:flex; flex-wrap:wrap; gap:8px;
+  list-style:none; padding:0; margin:2px 0 0 0;
+}
+#ctp-card .fpill{
+  display:inline-flex; align-items:center; gap:8px;
   padding:6px 10px;
   border-radius:999px;
-  width:max-content;
-}
-h1{
-  margin:0;
-  font-size:clamp(26px,6.5vw,40px);
-  line-height:1.15;
-  letter-spacing:-.02em;
-}
-.sub{
-  margin:0;
-  font-size:clamp(14px,3.2vw,18px);
-  color:#174c46;
-}
-
-.bullets{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-  margin:2px 0 6px 0;
-}
-@media (min-width:560px){
-  .bullets{grid-template-columns:repeat(3,1fr)}
-}
-.bullet{
-  display:flex;align-items:center;gap:10px;
-  background:linear-gradient(180deg,#f7fffd,#eefaf8);
-  border:1px solid rgba(14,59,54,.08);
-  border-radius:12px;
-  padding:10px 12px;
-  font-weight:600;
-  font-size:clamp(13px,3vw,14px);
+  background:#ffffff;
+  border:1px solid rgba(14,59,54,.12);
   color:#0f4c45;
+  font-weight:600;
+  font-size:clamp(0.8rem,2vw,0.9rem);
 }
-.bullet svg{flex:0 0 18px}
+#ctp-card .fpill svg{flex:0 0 16px}
 
-.cta-row{display:grid;gap:8px;margin-top:4px}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  gap:10px;
+/* CTA */
+#ctp-card .cta{
+  display:grid; gap:6px; margin-top:2px;
+}
+#ctp-card .btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
   text-decoration:none;
-  background:linear-gradient(180deg, var(--teal-1), var(--teal-2));
+  background:linear-gradient(180deg,var(--teal-1),var(--teal-2));
   color:#fff;
-  padding:14px 18px;
-  min-height:48px;
-  border-radius:14px;
   font-weight:700;
   letter-spacing:.2px;
+  border-radius:12px;
+  min-height:44px; /* 42–46px range */
+  padding:10px 16px;
   border:0;
-  box-shadow: 0 6px 14px rgba(17,116,107,.25);
-  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
-  will-change: transform, box-shadow, filter;
+  box-shadow:0 4px 12px rgba(17,116,107,.22);
+  transition:transform .15s ease, box-shadow .15s ease;
+  width:fit-content;
 }
-.btn:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(17,116,107,.28)}
-.btn:active{transform:translateY(0)}
-.tiny{font-size:12px;color:#2a6a62;opacity:.9}
-
-/* Why it helps grid */
-.why{
-  display:grid;
-  gap:14px;
-  margin-top:4px;
-}
-@media (min-width:720px){
-  .why{grid-template-columns:repeat(3,1fr)}
-}
-.why .card{
-  padding:18px;
-  display:grid;
-  gap:10px;
-}
-.why h3{
-  margin:0;
-  font-size:clamp(16px,3.4vw,18px);
-}
-.why p{
-  margin:0;
+#ctp-card .btn:hover{transform:translateY(-1px); box-shadow:0 7px 18px rgba(17,116,107,.25)}
+#ctp-card .btn:active{transform:translateY(0)}
+#ctp-card .btn svg{flex:0 0 18px}
+#ctp-card .tiny{
+  font-size:clamp(0.75rem,1.8vw,0.875rem);
   color:#1e5a54;
-  font-size:clamp(13px,3vw,14px);
-}
-.icon{
-  width:28px;height:28px;border-radius:8px;
-  display:inline-grid;place-items:center;
-  background:linear-gradient(180deg,#def7f3,#c9efe8);
-  border:1px solid rgba(14,59,54,.10);
 }
 
-/* How it works */
-.how.card{padding:20px}
-.steps{
-  display:grid;gap:14px;margin:8px 0 0 0;
-}
-@media (min-width:820px){
-  .steps{grid-template-columns:repeat(3,1fr)}
-}
-.step{
-  background:linear-gradient(180deg,#ffffff,#f6fbfa);
-  border:1px solid rgba(14,59,54,.08);
-  border-radius:14px;
-  padding:16px;
-  display:grid;gap:6px;
-}
-.step .num{
-  font-weight:800;color:var(--cta);
-  font-size:14px;letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.step h4{margin:0;font-size:clamp(15px,3.4vw,17px)}
-.step p{margin:0;color:#1f5b55;font-size:clamp(13px,3vw,14px)}
-
-/* Trust */
-.trust.card{padding:16px 18px}
-.trust p{margin:0}
-.muted{color:#1e5a54}
-
-/* Footer */
-footer{
-  margin-top:10px;
-  padding:20px var(--pad-x) max(20px, env(safe-area-inset-bottom));
-  color:#1e5a54;
-  font-size:13px;
-  text-align:center;
-}
-.linkish{
-  text-decoration:underline dotted;
-  cursor:default;
+/* Focus visibility */
+#ctp-card :where(a,button,[tabindex]):focus-visible{
+  outline:3px solid var(--ring);
+  outline-offset:2px;
+  border-radius:10px;
 }
 
-/* Motion preference */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
-  .btn{transition:none}
+  #ctp-card .btn{transition:none}
+  #ctp-root.rm .btn{transition:none}
 }
-.reduced-motion .btn{transition:none}
 
-/* Intro animation (disabled if reduced) */
-@keyframes fadeSlide{
-  from{opacity:0; transform:translateY(10px)}
-  to{opacity:1; transform:translateY(0)}
-}
-.hero,[data-animate]{animation:fadeSlide .4s ease both}
-.reduced-motion .hero,.reduced-motion [data-animate]{animation:none}
-
-/* Safety */
-.sr-only{
+/* Utility: accessible hidden text if needed */
+#ctp-card .sr-only{
   position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
 }
 ```
@@ -269,203 +141,110 @@ footer{
   </style>
 </head>
 <body>
-  <div class="pattern" aria-hidden="true"></div>
-
-  <header class="wrap" role="banner" aria-label="Site header">
-    <div class="brand">Care &amp; Tax Services</div>
-  </header>
-
-  <main id="content" class="wrap" role="main">
-    <!-- Hero -->
-    <section class="hero card" aria-labelledby="hero-title">
-      <span class="eyebrow" aria-hidden="true">
-        <!-- shield icon -->
-        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none">
-          <path d="M12 2l7 3v6c0 5-3.5 9.4-7 11-3.5-1.6-7-6-7-11V5l7-3z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-          <path d="M8 11l2.5 2.5L16 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Secure client access
-      </span>
-      <h1 id="hero-title">Try Our New Client Portal</h1>
-      <p class="sub">Easier, faster, secure help for taxes, ACA/Obamacare, and essential documents—right from your phone.</p>
+  <main id="ctp-root" role="main" aria-label="Client portal promo card">
+    <section id="ctp-card" aria-labelledby="title">
+      <div class="stack">
+        <span class="pill">
+          <!-- shield/check icon -->
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3l7 4v5c0 4.5-3 8.5-7 9.8C8 21 5 17 5 12V7l7-4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Secure client access
+        </span>
 
 ```
-  <div class="bullets" role="list">
-    <div class="bullet" role="listitem">
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
-        <path d="M7 12.5l3 3 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-      Book in minutes
-    </div>
-    <div class="bullet" role="listitem">
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <rect x="3.5" y="6" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.5"></rect>
-        <path d="M3.5 10h17" stroke="currentColor" stroke-width="1.5"></path>
-        <path d="M8.5 4v4M15.5 4v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-      </svg>
-      Secure uploads
-    </div>
-    <div class="bullet" role="listitem">
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3a9 9 0 100 18 9 9 0 000-18z" stroke="currentColor" stroke-width="1.5"></path>
-        <path d="M8.5 12.5l2.2 2.2 4.8-4.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-      Real support
+    <h1 id="title">Try Our New Client Portal</h1>
+    <p class="sub">Easier, faster, secure help for taxes, ACA/Obamacare, and essential documents—right from your phone.</p>
+
+    <ul class="features" aria-label="Key features">
+      <li class="fpill">
+        <!-- check icon -->
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.4"></circle>
+          <path d="M7.5 12.5l3 3 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Book in minutes
+      </li>
+      <li class="fpill">
+        <!-- lock icon -->
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <rect x="4.5" y="10" width="15" height="9" rx="2" stroke="currentColor" stroke-width="1.6"></rect>
+          <path d="M8 10V8a4 4 0 118 0v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+        Secure uploads
+      </li>
+      <li class="fpill">
+        <!-- chat icon -->
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M4 6h16v9a2 2 0 01-2 2H10l-4 3v-3H6a2 2 0 01-2-2V6z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linejoin="round"></path>
+          <path d="M8 10h8M8 13h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+        Real support
+      </li>
+    </ul>
+
+    <div class="cta">
+      <a class="btn portal-link"
+         href="https://www.caretaxservices.com/gethelpnow"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Open Client Portal">
+        <!-- arrow icon -->
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12h12M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Open Client Portal
+      </a>
+      <span class="tiny" aria-hidden="true">Optimized for mobile.</span>
     </div>
   </div>
-
-  <div class="cta-row">
-    <a class="btn portal-link"
-       href="https://www.caretaxservices.com/gethelpnow"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Open Client Portal in a new tab">
-      <!-- arrow icon -->
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M5 12h12M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Open Client Portal
-    </a>
-    <span class="tiny" aria-hidden="true">Works great on mobile.</span>
-  </div>
-</section>
-
-<!-- Why it helps -->
-<section class="why" aria-labelledby="why-title">
-  <h2 id="why-title" class="sr-only">Why the portal helps</h2>
-
-  <article class="card" data-animate>
-    <div class="icon" aria-hidden="true">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M5 5h14v14H5z" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M7 10h10M7 14h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <h3>Easy Booking</h3>
-    <p>Choose a time that works for you—no back-and-forth.</p>
-  </article>
-
-  <article class="card" data-animate>
-    <div class="icon" aria-hidden="true">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3l7 4v5c0 4.5-3 8.5-7 9.8C8 21 5 17 5 12V7l7-4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-        <path d="M9 12l2.2 2.2L16 9.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <h3>Secure &amp; Confidential</h3>
-    <p>Industry-standard safeguards keep your information protected.</p>
-  </article>
-
-  <article class="card" data-animate>
-    <div class="icon" aria-hidden="true">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-        <path d="M4 7h9M4 12h16M4 17h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-      </svg>
-    </div>
-    <h3>Fast &amp; Convenient</h3>
-    <p>Everything in one place—start, upload, and get help quickly.</p>
-  </article>
-</section>
-
-<!-- How it works -->
-<section class="how card" aria-labelledby="how-title">
-  <h2 id="how-title" class="sr-only">How it works</h2>
-  <div class="steps">
-    <div class="step">
-      <span class="num">Step 1</span>
-      <h4>Pick a service</h4>
-      <p>Select taxes, ACA/Obamacare, or document support.</p>
-    </div>
-    <div class="step">
-      <span class="num">Step 2</span>
-      <h4>Upload/confirm details</h4>
-      <p>Answer a few questions and add your files securely.</p>
-    </div>
-    <div class="step">
-      <span class="num">Step 3</span>
-      <h4>Get support</h4>
-      <p>Our team follows up and keeps you moving forward.</p>
-    </div>
-  </div>
-
-  <div class="cta-row" style="margin-top:14px">
-    <a class="btn portal-link"
-       href="https://www.caretaxservices.com/gethelpnow"
-       target="_blank" rel="noopener noreferrer"
-       aria-label="Open Client Portal in a new tab from How it Works section">
-      Open Client Portal
-    </a>
-  </div>
-</section>
-
-<!-- Trust & support -->
-<section class="trust card" aria-labelledby="trust-title">
-  <h2 id="trust-title" class="sr-only">Trust and support</h2>
-  <p class="muted">Real people, real help—trusted by our community for clear guidance and secure service.</p>
-  <p class="muted" style="margin-top:6px">Questions? Call or text (470) 277-2569.</p>
 </section>
 ```
 
   </main>
 
-  <footer role="contentinfo">
-    <div>Service you can trust, support you deserve. <span class="linkish" aria-hidden="true">Privacy &amp; Security</span></div>
-  </footer>
-
   <script>
     (function(){
       "use strict";
-      var PORTAL_URL = "https://www.caretaxservices.com/gethelpnow";
+      var URL = "https://www.caretaxservices.com/gethelpnow";
 
-      // Reduced motion safeguard (CSS also honors prefers-reduced-motion)
+      // Respect reduced motion
       try{
         var mq = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
-        if(mq && mq.matches){ document.documentElement.classList.add("reduced-motion"); }
-      }catch(_){/* no-op */}
-      
-      // Robust top-window opener for iframe contexts
-      function openFromTop(url){
+        if(mq && mq.matches){ document.getElementById("ctp-root").classList.add("rm"); }
+      }catch(_){/* no-op */ }
+
+      function openTopSafe(url){
         try{
           var topWin = (window.top && window.top !== window) ? window.top : window;
           var newTab = topWin.open(url, "_blank", "noopener");
-          // If the popup was blocked or not available, replace top location
           if(!newTab || newTab.closed){ topWin.location.href = url; }
         }catch(e){
-          // If cross-origin blocks access to window.top
           try{
-            var fallbackTab = window.open(url, "_blank", "noopener");
-            if(!fallbackTab || fallbackTab.closed){ window.location.href = url; }
+            var fallback = window.open(url, "_blank", "noopener");
+            if(!fallback || fallback.closed){ window.location.href = url; }
           }catch(e2){
-            // Last-ditch: set location (should never throw)
             window.location.href = url;
           }
         }
       }
 
-      // Attach to all portal links
-      function bindPortalLinks(){
-        var links = document.querySelectorAll(".portal-link");
-        for(var i=0;i<links.length;i++){
-          (function(a){
-            a.addEventListener("click", function(ev){
-              ev.preventDefault();
-              openFromTop(PORTAL_URL);
-            }, {passive:false});
-            // Ensure attributes are present even if pasted elsewhere
-            a.setAttribute("target","_blank");
-            a.setAttribute("rel","noopener noreferrer");
-            a.setAttribute("href", PORTAL_URL);
-          })(links[i]);
-        }
+      function bind(){
+        var a = document.querySelector("#ctp-card .portal-link");
+        if(!a) return;
+        a.addEventListener("click", function(ev){
+          ev.preventDefault();
+          openTopSafe(URL);
+        }, {passive:false});
+        // Ensure attributes are present even if pasted elsewhere
+        a.setAttribute("target","_blank");
+        a.setAttribute("rel","noopener noreferrer");
+        a.setAttribute("href", URL);
       }
 
-      // DOM ready (no layout shift — minimal JS)
       if(document.readyState === "loading"){
-        document.addEventListener("DOMContentLoaded", bindPortalLinks);
-      }else{
-        bindPortalLinks();
-      }
+        document.addEventListener("DOMContentLoaded", bind);
+      } else { bind(); }
     })();
   </script>
 
